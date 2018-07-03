@@ -49,7 +49,7 @@
             }
 
             if (login_type.equals("reader")) {
-                session.setAttribute("userID", userID);
+                session.setAttribute("readerID", userID);
                 request.setAttribute("userID", userID);
                 request.getRequestDispatcher("personal_info.jsp").forward(request, response);
             } else if (login_type.equals("ad")){

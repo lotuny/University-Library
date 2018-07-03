@@ -9,7 +9,7 @@ Java, JSP and MySQL
 2. Pictures from Amazon and Jinan University.
 
 ## Functions
-1. Log in and out as a reader or administrator. (not yet finished)
+1. Log in and out as a reader or administrator.
 2. Search for books and browse their information with key word. (remains to embellish)
 3. Borrow, renew and return books after logging in as an aurhorized reader. (not yet finished)
 4. Update books and reader information as an administrator. (not yet finished)

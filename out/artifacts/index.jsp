@@ -12,10 +12,11 @@
     String pic3;
     String pic4;
 
-    String userID = (String) session.getAttribute("userID");
+    String readerID = (String) session.getAttribute("readerID");
+    System.out.println(readerID);
     Reader reader = null;
-    if (userID != null)
-        reader = ReaderDAO.getReaderByID(userID);
+    if (readerID != null)
+        reader = ReaderDAO.getReaderByID(readerID);
 %>
 
 <!DOCTYPE html>
@@ -67,7 +68,13 @@
                         if (reader != null) {%>
                         <form class="navbar-form navbar-right log-out" style="margin-right: 50px; visibility: visible;" action="jsp/logout.jsp">
                             <button type="submit" class="btn btn-default btn-sm">
-                                <span class="glyphicon glyphicon-user"></span> Log out
+                                <span class="glyphicon glyphicon-log-out"></span> Log out
+                            </button>
+                        </form>
+
+                        <form class="navbar-form navbar-right" style="margin-right: 50px; visibility: visible;" action="jsp/personal_info.jsp">
+                            <button type="submit" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-user"></span> Personal Center
                             </button>
                         </form>
                         <%}
@@ -80,7 +87,7 @@
 					Welcome to my Library System!
 				</h1>
 				<p>
-					This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
+					This is an experiment model of university library system.
 				</p>
 			</div>
 			<div class="carousel slide" id="carousel-903630">

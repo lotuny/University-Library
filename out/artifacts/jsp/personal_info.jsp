@@ -4,8 +4,9 @@
 
 <%
     request.setCharacterEncoding("utf-8");
-    String userID = (String)request.getAttribute("userID");
-    Reader reader = ReaderDAO.getReaderByID(userID);
+
+    String readerID = (String)session.getAttribute("readerID");
+    Reader reader = ReaderDAO.getReaderByID(readerID);
 %>
 
 <!DOCTYPE html>
@@ -48,7 +49,7 @@
 
                     <form class="navbar-form navbar-right log-out" style="margin-right: 50px; visibility: visible;" action="logout.jsp">
                         <button type="submit" class="btn btn-default btn-sm">
-                            <span class="glyphicon glyphicon-user"></span> Log out
+                            <span class="glyphicon glyphicon-log-out"></span> Log out
                         </button>
                     </form>
                 </div>
@@ -99,7 +100,7 @@
                                 </thead>
                                 <tbody>
                                 <%
-                                    List<Record> records = RecordDAO.getRecordsByReaderID(userID);
+                                    List<Record> records = RecordDAO.getRecordsByReaderID(readerID);
                                     for (int i = 0; i < records.size(); i++) {%>
                                 <tr>
                                     <td><%=records.get(i).getBookID()%></td>

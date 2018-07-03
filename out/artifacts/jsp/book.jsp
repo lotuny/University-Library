@@ -15,10 +15,10 @@
         coverPath = basePath + "resources/books/" + book.getTitle() + ".jpg";
     }
 
-    String userID = (String) session.getAttribute("userID");
+    String readerID = (String) session.getAttribute("readerID");
     Reader reader = null;
-    if (userID != null)
-        reader = ReaderDAO.getReaderByID(userID);
+    if (readerID != null)
+        reader = ReaderDAO.getReaderByID(readerID);
 
 %>
 
@@ -56,14 +56,14 @@
 
                     <form class="navbar-form navbar-left" action="search.jsp" method="post" style="margin-left: 200px;" role="search">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="book_name"/>
+                            <input type="text" class="form-control" name="book_name" placeholder="input key word"/>
                         </div> <button type="submit" class="btn btn-default">Search</button>
                     </form>
 
                     <%
                         if (reader == null) {%>
                         <form class="navbar-form navbar-right" style="margin-right: 50px;" action="login.jsp">
-						    <button type="button" class="btn btn-default btn-sm">
+						    <button type="submit" class="btn btn-default btn-sm">
                                 <span class="glyphicon glyphicon-user"></span> Log in
                             </button>
 					    </form>
@@ -72,9 +72,9 @@
                     <%
                         if (reader != null) {%>
                         <form class="navbar-form navbar-right log-out" style="margin-right: 50px;" action="logout.jsp">
-                            <label><%=userID%></label>
+                            <label><%=readerID%></label>
                             <button type="submit" class="btn btn-default btn-sm">
-                                <span class="glyphicon glyphicon-user"></span> Log out
+                                <span class="glyphicon glyphicon-log-out"></span> Log out
                             </button>
                         </form>
                         <%}

@@ -13,10 +13,10 @@
     request.setCharacterEncoding("utf-8");
     String book_name = (String)request.getParameter("book_name");
 
-    String userID = (String) session.getAttribute("userID");
+    String readerID = (String) session.getAttribute("readerID");
     Reader reader = null;
-    if (userID != null)
-        reader = ReaderDAO.getReaderByID(userID);
+    if (readerID != null)
+        reader = ReaderDAO.getReaderByID(readerID);
 %>
 
 <!DOCTYPE html>
@@ -60,7 +60,7 @@
                     <%
                         if (reader == null) {%>
                         <form class="navbar-form navbar-right" style="margin-right: 50px;" action="login.jsp">
-                            <button type="button" class="btn btn-default btn-sm">
+                            <button type="submit" class="btn btn-default btn-sm">
                                 <span class="glyphicon glyphicon-user"></span> Log in
                             </button>
                         </form>
@@ -69,9 +69,9 @@
                     <%
                         if (reader != null) {%>
                         <form class="navbar-form navbar-right log-out" style="margin-right: 50px;" action="logout.jsp">
-                            <label><%=userID%></label>
+                            <label><%=readerID%></label>
                             <button type="submit" class="btn btn-default btn-sm">
-                                <span class="glyphicon glyphicon-user"></span> Log out
+                                <span class="glyphicon glyphicon-log-out"></span> Log out
                             </button>
                         </form>
                         <%}

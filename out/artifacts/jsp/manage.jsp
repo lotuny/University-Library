@@ -44,7 +44,7 @@
 
                     <form class="navbar-form navbar-right log-out" style="margin-right: 50px; visibility: visible;" action="logout.jsp">
                         <button type="submit" class="btn btn-default btn-sm">
-                            <span class="glyphicon glyphicon-user"></span> Log out
+                            <span class="glyphicon glyphicon-log-out"></span> Log out
                         </button>
                     </form>
 				</div>
