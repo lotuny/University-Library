@@ -1,0 +1,1 @@
+INSERT INTO `library`.`ad_account` (`id`, `password`) VALUES ('1001', '1001');
