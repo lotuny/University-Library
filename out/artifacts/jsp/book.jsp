@@ -1,4 +1,7 @@
 <%@ page import="javacode.*" %>
+<%@ page import="javacode.Utils" %>
+<%@ page import="java.sql.Date" %>
+<%@ page import="java.util.Calendar" %>
 <%@ page contentType="text/html; charset=utf-8" %>
 
 <%
@@ -19,7 +22,6 @@
     Reader reader = null;
     if (readerID != null)
         reader = ReaderDAO.getReaderByID(readerID);
-
 %>
 
 <!DOCTYPE html>
@@ -96,7 +98,7 @@
 			<p>
 				Author: <%=book.getAuthor()%>
 			</p>
-			<button type="submit" class="btn btn-default col-sm-2" style="">Borrow</button>
+			<button type="submit" class="btn btn-default col-sm-2" onclick="tryBorrow()" >Borrow</button>
 		</div>
 		<div class="col-md-7 col-md-offset-2 column">
 			<h2>
@@ -111,3 +113,15 @@
 
 </body>
 </html>
+
+<script>
+    function tryBorrow()
+    {
+        <%
+            Calendar calendar = Calendar.getInstance();
+            String test = new Date(calendar.getTime().getTime()).toString();
+        %>
+    }
+</script>
+
+<!--alert(Utils.borrowBook('<%=bookID%>','<%=readerID%>',new Date(calendar.getTime().getTime())));-->

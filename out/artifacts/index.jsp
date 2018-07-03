@@ -13,7 +13,6 @@
     String pic4;
 
     String readerID = (String) session.getAttribute("readerID");
-    System.out.println(readerID);
     Reader reader = null;
     if (readerID != null)
         reader = ReaderDAO.getReaderByID(readerID);
