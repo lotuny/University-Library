@@ -18,7 +18,7 @@
 <body>
 
 <%
-    session.invalidation();
+    session.invalidate();
     response.sendRedirect("/");
 %>
 

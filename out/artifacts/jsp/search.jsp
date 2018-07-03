@@ -1,6 +1,8 @@
 <%@ page import="javacode.Book" %>
 <%@ page import="javacode.BookDAO" %>
 <%@ page import="java.util.List" %>
+<%@ page import="javacode.Reader" %>
+<%@ page import="javacode.ReaderDAO" %>
 <%@ page import="javacode.MyDBConnection" %>
 <%@ page contentType="text/html; charset=utf-8" %>
 
@@ -10,6 +12,11 @@
 
     request.setCharacterEncoding("utf-8");
     String book_name = (String)request.getParameter("book_name");
+
+    String userID = (String) session.getAttribute("userID");
+    Reader reader = null;
+    if (userID != null)
+        reader = ReaderDAO.getReaderByID(userID);
 %>
 
 <!DOCTYPE html>
@@ -50,11 +57,25 @@
                         </div> <button type="submit" class="btn btn-default">Search</button>
                     </form>
 
-                    <form class="navbar-form navbar-right" style="margin-right: 50px;">
-                        <button type="button" class="btn btn-default btn-sm">
-                            <span class="glyphicon glyphicon-user"></span> Login
-                        </button>
-                    </form>
+                    <%
+                        if (reader == null) {%>
+                        <form class="navbar-form navbar-right" style="margin-right: 50px;" action="login.jsp">
+                            <button type="button" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-user"></span> Log in
+                            </button>
+                        </form>
+                        <%}
+                    %>
+                    <%
+                        if (reader != null) {%>
+                        <form class="navbar-form navbar-right log-out" style="margin-right: 50px;" action="logout.jsp">
+                            <label><%=userID%></label>
+                            <button type="submit" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-user"></span> Log out
+                            </button>
+                        </form>
+                        <%}
+                    %>
                 </div>
             </nav>
 

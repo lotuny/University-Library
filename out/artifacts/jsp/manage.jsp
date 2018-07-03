@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Manage</title>
+    <title>Management</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -40,6 +40,12 @@
                         <div class="form-group">
                             <input type="text" class="form-control" name="book_name"/>
                         </div> <button type="submit" class="btn btn-default">Search</button>
+                    </form>
+
+                    <form class="navbar-form navbar-right log-out" style="margin-right: 50px; visibility: visible;" action="logout.jsp">
+                        <button type="submit" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-user"></span> Log out
+                        </button>
                     </form>
 				</div>
 			</nav>

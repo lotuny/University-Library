@@ -15,8 +15,7 @@
         coverPath = basePath + "resources/books/" + book.getTitle() + ".jpg";
     }
 
-    String userID = "";
-    userID = (String) session.getAttribute("userID");
+    String userID = (String) session.getAttribute("userID");
     Reader reader = null;
     if (userID != null)
         reader = ReaderDAO.getReaderByID(userID);

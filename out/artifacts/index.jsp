@@ -12,8 +12,7 @@
     String pic3;
     String pic4;
 
-    String userID = "";
-    userID = (String) session.getAttribute("userID");
+    String userID = (String) session.getAttribute("userID");
     Reader reader = null;
     if (userID != null)
         reader = ReaderDAO.getReaderByID(userID);
@@ -66,7 +65,7 @@
                     %>
                     <%
                         if (reader != null) {%>
-                        <form class="navbar-form navbar-right log-out" style="margin-right: 50px; visibility: visible;" action="jsp/login.jsp">
+                        <form class="navbar-form navbar-right log-out" style="margin-right: 50px; visibility: visible;" action="jsp/logout.jsp">
                             <button type="submit" class="btn btn-default btn-sm">
                                 <span class="glyphicon glyphicon-user"></span> Log out
                             </button>
