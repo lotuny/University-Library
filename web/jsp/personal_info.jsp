@@ -7,6 +7,8 @@
 
     String readerID = (String)session.getAttribute("readerID");
     Reader reader = ReaderDAO.getReaderByID(readerID);
+
+    String prompt = (String)request.getAttribute("prompt");
 %>
 
 <!DOCTYPE html>
@@ -68,7 +70,7 @@
 					<div class="panel-heading">
 						 <a class="panel-title" data-toggle="collapse" data-parent="#panel-3" href="#panel-element-4">Personal Information</a>
 					</div>
-					<div id="panel-element-4" class="panel-collapse collapse in">
+					<div id="panel-element-4" class="panel-collapse collapse">
 						<div class="panel-body" style="padding-left: 380px; font-size: 0.7cm">
                             <ul class="list-unstyled">
                                 <li><label>Reader ID:</label>&nbsp;&nbsp;&nbsp;<span><%=reader.getId()%></span></li>
@@ -86,7 +88,7 @@
 					<div class="panel-heading">
 						 <a class="panel-title" data-toggle="collapse" data-parent="#panel-3" href="#panel-element-5">Borrowing Record</a>
 					</div>
-					<div id="panel-element-5" class="panel-collapse collapse">
+					<div id="panel-element-5" class="panel-collapse collapse in">
 						<div class="panel-body">
                             <table class="table table-bordered table-hover">
                                 <thead>
@@ -96,7 +98,7 @@
                                     <th>Lent time</th>
                                     <th>Deadline</th>
                                     <th>Fine</th>
-                                    <th>Renew</th>
+                                    <th>Operation</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -109,7 +111,12 @@
                                     <td><%=records.get(i).getBegin()%></td>
                                     <td><%=records.get(i).getDeadline()%></td>
                                     <td><%=records.get(i).getFine()%></td>
-                                    <td><<a href="tryRenew.jsp?bookID=<%=records.get(i).getBookID()%>"></a>><button style="align-content: center;">Renew</button></td>
+                                    <td>
+                                        <form action="readerAction.jsp" method="post">
+                                            <button type="submit" style="align-content: center;" name="renew" value="<%=records.get(i).getBookID()%>">Renew</button>
+                                            <button type="submit" style="align-content: center;" name="return" value="<%=records.get(i).getBookID()%>">Return</button>
+                                        </form>
+                                    </td>
                                 </tr>
                                 <%}
                                 %>

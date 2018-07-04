@@ -1,10 +1,6 @@
 <%@ page import="javacode.MyDBConnection" %>
 <%@ page import="javacode.Utils" %>
 <%@ page contentType="text/html; charset=utf-8" %>
-<%
-    String path = request.getContextPath();
-    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
 
 <!DOCTYPE html>
 <html>

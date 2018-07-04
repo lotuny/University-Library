@@ -58,7 +58,7 @@ public class Utils {
 	//reader borrows a book
 	public static int borrowBook(String bookID, String readerID, Date begin){
 		try {
-		    if (!isBookOnShelf(bookID)) return 1; //Error 1: book was lent
+		    if (!checkBookState(bookID).equals("on shelf")) return 1; //Error 1: book was lent
             if (!checkMaxnum(readerID)) return 2; //Error 2: number of books was counted down to 0
 		    String sql = "select role from library.reader where readerID = '" + readerID + "'";
 		    ResultSet rs = MyDBConnection.executeQuery(sql);
@@ -93,24 +93,25 @@ public class Utils {
 		}
 		return 0; //Succeed.
 	}
-	//check whether a book can be lent
-	private static boolean isBookOnShelf(String bookID) {
+	//check whether a book can be lent or renewed
+    private static String checkBookState(String bookID) {
         try {
             String sql = "select state from library.book where bookID = '" + bookID + "'";
             ResultSet rs = MyDBConnection.executeQuery(sql);
             if (rs.next()) {
-                return (rs.getString("state").equals("on shelf"));
+                return (rs.getString("state"));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return false;
+        return null;
     }
     //reader renews a book
     public static boolean renew(String bookID){
-	    boolean isDone = false;
         try {
+            if (checkBookState(bookID).equals("renewed")) return false;
+
             String sql = "select deadline from library.record where bookID = '" + bookID + "'";
             ResultSet rs = MyDBConnection.executeQuery(sql);
             if (rs.next()) {
@@ -120,38 +121,36 @@ public class Utils {
 
                 sql = "update library.record set deadline = '" + new Date(calendar.getTime().getTime()) + "'" + " where bookID = '" + bookID + "'";
                 MyDBConnection.executeUpdate(sql);
-
                 sql = "update library.book set state = 'renewed'  where bookID = '" + bookID + "'";
                 MyDBConnection.executeUpdate(sql);
             }
-            isDone = true;
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return isDone;
+        return false;
     }
     //reader returns a book
     public static boolean returnBook(String bookID){
-        boolean isDone = false;
         try {
             String sql = "select readerID from library.record where bookID = '" + bookID + "'";
             ResultSet rs = MyDBConnection.executeQuery(sql);
             if (rs.next()) {
-                String readerID = rs.getString("readerID");
+                String readerID =  rs.getString("readerID");
                 sql = "delete from library.record where bookID = '" + bookID + "'";
                 MyDBConnection.executeUpdate(sql);
-                sql = "update book set state = 'on shelf' where bookID = '" + bookID + "'";
+                sql = "update library.book set state = 'on shelf' where bookID = '" + bookID + "'";
                 MyDBConnection.executeUpdate(sql);
-                sql = "update reader set maxnum = maxnum + '1' where readerID = '" + readerID + "'";
+                sql = "update library.reader set maxnum = maxnum + '1' where readerID = '" + readerID + "'";
                 MyDBConnection.executeUpdate(sql);
-                isDone = true;
+                return true;
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            return isDone;
         }
+
+        return false;
     }
     //administrator adds a book
 	public static boolean addBook(String bookID, String coverPath, String title, String author, String ISBN, String description) {

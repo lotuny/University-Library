@@ -49,14 +49,14 @@
 						</li>
 					</ul>
 
-                    <form class="navbar-form navbar-left" action="../../out/artifacts/jsp/search.jsp" method="post" style="margin-left: 200px;" role="search">
+                    <form class="navbar-form navbar-left" action="jsp/search.jsp" method="post" style="margin-left: 200px;" role="search">
                         <div class="form-group">
                             <input type="text" class="form-control" name="book_name"/>
                         </div> <button type="submit" class="btn btn-default">Search</button>
                     </form>
                     <%
                         if (reader == null) {%>
-                        <form class="navbar-form navbar-right log-in" style="margin-right: 50px;" action="../../out/artifacts/jsp/login.jsp">
+                        <form class="navbar-form navbar-right log-in" style="margin-right: 50px;" action="jsp/login.jsp">
                             <button type="submit" class="btn btn-default btn-sm">
                                 <span class="glyphicon glyphicon-user"></span> Log in
                             </button>
@@ -65,13 +65,13 @@
                     %>
                     <%
                         if (reader != null) {%>
-                        <form class="navbar-form navbar-right log-out" style="margin-right: 50px; visibility: visible;" action="../../out/artifacts/jsp/logout.jsp">
+                        <form class="navbar-form navbar-right log-out" style="margin-right: 50px; visibility: visible;" action="jsp/logout.jsp">
                             <button type="submit" class="btn btn-default btn-sm">
                                 <span class="glyphicon glyphicon-log-out"></span> Log out
                             </button>
                         </form>
 
-                        <form class="navbar-form navbar-right" style="margin-right: 50px; visibility: visible;" action="../../out/artifacts/jsp/personal_info.jsp">
+                        <form class="navbar-form navbar-right" style="margin-right: 50px; visibility: visible;" action="jsp/personal_info.jsp">
                             <button type="submit" class="btn btn-default btn-sm">
                                 <span class="glyphicon glyphicon-user"></span> Personal Center
                             </button>
@@ -100,13 +100,13 @@
 				</ol>
 				<div class="carousel-inner" style="height: 320px;">
 					<div class="item active">
-						<img alt="" src="../../out/artifacts/resources/news1.jpg" />
+						<img alt="" src="resources/news1.jpg" />
 					</div>
 					<div class="item">
-						<img alt="" src="../../out/artifacts/resources/news2.jpg" />
+						<img alt="" src="resources/news2.jpg" />
 					</div>
 					<div class="item">
-						<img alt="" src="../../out/artifacts/resources/news3.jpg" />
+						<img alt="" src="resources/news3.jpg" />
 					</div>
 				</div> <a class="left carousel-control" href="#carousel-903630" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-903630" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
 			</div>
@@ -120,18 +120,18 @@
             %>
 
 			<div class="row clearfix">
-                <form action="../../out/artifacts/jsp/book.jsp" method="post">
+                <form action="jsp/book.jsp" method="post">
                     <div class="col-md-3 column">
-                        <a href="../../out/artifacts/jsp/book.jsp?bookID=<%=BookDAO.getBookByID("><img style="margin-top: 50px; width: 260px; height: 325px;" src="<%=pic1%>"/></a>
+                        <a href="jsp/book.jsp?bookID=1"><img style="margin-top: 50px; width: 260px; height: 325px;" src="<%=pic1%>"/></a>
                     </div>
                     <div class="col-md-3 column">
-                        <a href="../../out/artifacts/jsp/book.jsp?bookID=<%=BookDAO.getBookByID("><img style="margin-top: 50px; width: 260px; height: 325px;" src="<%=pic2%>"/></a>
+                        <a href="jsp/book.jsp?bookID=2>"><img style="margin-top: 50px; width: 260px; height: 325px;" src="<%=pic2%>"/></a>
                     </div>
                     <div class="col-md-3 column">
-                        <a href="../../out/artifacts/jsp/book.jsp?bookID=<%=BookDAO.getBookByID("><img style="margin-top: 50px; width: 260px; height: 325px;" src="<%=pic3%>"/></a>
+                        <a href="jsp/book.jsp?bookID=3>"><img style="margin-top: 50px; width: 260px; height: 325px;" src="<%=pic3%>"/></a>
                     </div>
                     <div class="col-md-3 column">
-                        <a href="../../out/artifacts/jsp/book.jsp?bookID=<%=BookDAO.getBookByID("><img style="margin-top: 50px; width: 260px; height: 325px;" src="<%=pic4%>"/></a>
+                        <a href="jsp/book.jsp?bookID=4>"><img style="margin-top: 50px; width: 260px; height: 325px;" src="<%=pic4%>"/></a>
                     </div>
                 </form>
             </div>
@@ -139,9 +139,10 @@
 		</div>
 	</div>
 
-	</div>
-	    <p style="margin: 100px;"><footer><h4 style="text-align: center;">Made by Li Zhuoling, 2015050556, CST</h4></footer></p>
+	<div>
+	    <footer><h4 style="text-align: center;">Made by Li Zhuoling, 2015050556, CST</h4></footer>
     </div>
+
 </div>
 </body>
 </html>
