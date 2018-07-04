@@ -7,8 +7,6 @@
 
     String readerID = (String)session.getAttribute("readerID");
     Reader reader = ReaderDAO.getReaderByID(readerID);
-
-    String prompt = (String)request.getAttribute("prompt");
 %>
 
 <!DOCTYPE html>

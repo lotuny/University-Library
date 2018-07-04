@@ -100,6 +100,7 @@
 			</h2>
 			<p>
 				Author: <%=book.getAuthor()%>
+                State: <%=book.getState()%>
 			</p>
 			<button type="submit" class="btn btn-default col-sm-2" onclick="tryBorrow()" >Borrow</button>
 		</div>

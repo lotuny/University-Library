@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%
-String userID = "";
-String password = "";
+	String userID = "";
+	String password = "";
 %>
 
 <!DOCTYPE html>

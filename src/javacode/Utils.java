@@ -181,7 +181,7 @@ public class Utils {
 		return true;
 	}
 	//administrator adds a reader
-	public static boolean addReader(String readerID, String name, int age, String gender, String tel, String role){
+	public static boolean addReader(String readerID, String name, int age, String gender, String tel, String role, String password){
 		try {
 		    int maxnum;
 
@@ -193,12 +193,13 @@ public class Utils {
                 maxnum = 3;
             }
 
-			String sql = "insert into reader values('"
+			String sql = "insert into library.reader values('"
                     + readerID + "','" + name + "','" + age + "','" + gender + "','" + tel + "','" + role + "','" + maxnum + "')";
 		    MyDBConnection.executeUpdate(sql);
+            sql = "insert into library.reader_account values('" + readerID + "','" + password + "')";
+            MyDBConnection.executeUpdate(sql);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
 		}
 		return true;
 	}
@@ -207,16 +208,12 @@ public class Utils {
 		try {
 			String sql= "delete from library.reader where readerID = '" + readerID + "'";
 			MyDBConnection.executeUpdate(sql);
+            sql= "delete from library.reader_account where id = '" + readerID + "'";
+            MyDBConnection.executeUpdate(sql);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
 		}
 		return true;
-	}
-	//query reader's books
-	public static List<Book> getMyBooks(String readerID){
-		String sql = "select * from library.record inner join book on record.bookID = book.bookID where readerID = '"+ readerID + "'";
-        return BookDAO.getBooks(sql);
 	}
 
 	public static List<Book> getAllBooks() {
