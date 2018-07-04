@@ -17,23 +17,16 @@ public class Utils {
 
     //check whether a reader can borrow more books
 	public static boolean checkMaxnum(String readerID){
-        boolean canBorrow = false;
 		try{
 			String sql = "select maxnum from library.reader where readerID = '" + readerID + "'";
 			ResultSet rs = MyDBConnection.executeQuery(sql);
-			while(rs.next()){
-				if(rs.getInt("maxnum") > 0){
-					canBorrow = true;
-				}
-				else{
-					canBorrow= false;
-				}
+			if (rs.next()){
+				return (rs.getInt("maxnum") > 0);
 			}
 		}catch(Exception e){
 			e.printStackTrace();
-		} finally {
-            return canBorrow;
-        }
+		}
+		return false;
 	}
 	//check reader's password
 	public static boolean readerCheck(String id, String password) {
@@ -49,8 +42,8 @@ public class Utils {
 
         return checkPassword(rs, password);
 	}
-
-	public static boolean checkPassword(ResultSet rs, String password) {
+    //sub-method for check password
+	private static boolean checkPassword(ResultSet rs, String password) {
 	    boolean isCorrect = false;
         try {
             while(rs.next()){
@@ -58,14 +51,15 @@ public class Utils {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            return isCorrect;
         }
-    }
 
+        return isCorrect;
+    }
 	//reader borrows a book
-	public static boolean borrowBook(String bookID, String readerID, Date begin){
+	public static int borrowBook(String bookID, String readerID, Date begin){
 		try {
+		    if (!isBookOnShelf(bookID)) return 1; //Error 1: book was lent
+            if (!checkMaxnum(readerID)) return 2; //Error 2: number of books was counted down to 0
 		    String sql = "select role from library.reader where readerID = '" + readerID + "'";
 		    ResultSet rs = MyDBConnection.executeQuery(sql);
 		    if (rs.next()) {
@@ -81,23 +75,38 @@ public class Utils {
                 }
                 calendar.add(Calendar.DATE, duration);
 
+                Book book = BookDAO.getBookByID(bookID);
+                Reader reader = ReaderDAO.getReaderByID(readerID);
                 //produce record
-                sql = "insert into record values('"
-                        + bookID + "','" + readerID + "','" + begin + "','" + new Date(calendar.getTime().getTime()) + "','" + 0 + "')";
+                sql = "insert into library.record values('"
+                        + bookID + "','" + book.getTitle() + "','" + readerID+ "','" + reader.getName() + "','" + begin + "','" + new Date(calendar.getTime().getTime()) + "','" + 0 + "')";
                 MyDBConnection.executeUpdate(sql);
                 //update state of book
-                sql = "update book set state = 'lent' where bookID = '" + bookID + "'";
+                sql = "update library.book set state = 'lent' where bookID = '" + bookID + "'";
                 MyDBConnection.executeUpdate(sql);
                 //update reader's maxnum
-                sql = "update reader set maxnum = maxnum - '1' where readerID = '" + readerID + "'";
+                sql = "update library.reader set maxnum = maxnum - '1' where readerID = '" + readerID + "'";
                 MyDBConnection.executeUpdate(sql);
             }
-            return true;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
 		}
+		return 0; //Succeed.
 	}
+	//check whether a book can be lent
+	private static boolean isBookOnShelf(String bookID) {
+        try {
+            String sql = "select state from library.book where bookID = '" + bookID + "'";
+            ResultSet rs = MyDBConnection.executeQuery(sql);
+            if (rs.next()) {
+                return (rs.getString("state").equals("on shelf"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
     //reader renews a book
     public static boolean renew(String bookID){
 	    boolean isDone = false;

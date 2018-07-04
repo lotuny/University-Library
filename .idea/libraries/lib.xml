@@ -1,9 +1,9 @@
 <component name="libraryTable">
-  <library name="mysql-connector-java-5.1.46-bin">
+  <library name="lib">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/out/artifacts/WEB-INF/lib/mysql-connector-java-5.1.46-bin.jar!/" />
-      <root url="jar://$PROJECT_DIR$/out/artifacts/WEB-INF/lib/mysql-connector-java-5.1.46.jar!/" />
       <root url="jar://$PROJECT_DIR$/out/artifacts/WEB-INF/lib/poi-3.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/WEB-INF/lib/mysql-connector-java-5.1.46.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/WEB-INF/lib/mysql-connector-java-5.1.46-bin.jar!/" />
       <root url="jar://$PROJECT_DIR$/out/artifacts/WEB-INF/lib/poi-ooxml-3.17.jar!/" />
     </CLASSES>
     <JAVADOC />

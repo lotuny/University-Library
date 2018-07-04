@@ -1,4 +1,4 @@
-package Model.Database;
+package javacode.Database;
 
 public class TableBuilder {
 
@@ -9,14 +9,7 @@ public class TableBuilder {
     public boolean buildLibrary() {
         String sql = "create database if not exists library";
 
-        if (MyDBConnection.executeUpdate(sql) && buildReader() && buildAccount() && buildBook() && buildRecord()) {
-            MyDBConnection.destroy();
-            return true;
-        }
-        else {
-            MyDBConnection.destroy();
-            return false;
-        }
+        return  (MyDBConnection.executeUpdate(sql) && buildReader() && buildAccount() && buildBook() && buildRecord());
     }
 
     private boolean buildBook() {
@@ -28,9 +21,7 @@ public class TableBuilder {
                    + "state varchar(10) not null,\n"
                    + "ISBN varchar(13) not null,\n"
                    + "description longtext)";
-        if (MyDBConnection.executeUpdate(sql))
-            return true;
-        return false;
+        return  (MyDBConnection.executeUpdate(sql));
     }
 
     private boolean buildReader() {
@@ -42,9 +33,7 @@ public class TableBuilder {
                    + "tel varchar(20) not null,\n"
                    + "role varchar(10) not null,\n"
                    + "maxnum int not null)";
-        if (MyDBConnection.executeUpdate(sql))
-            return true;
-        return false;
+        return  (MyDBConnection.executeUpdate(sql));
     }
 
     private boolean buildAccount() {
@@ -55,9 +44,7 @@ public class TableBuilder {
         String sql2 = "create table  if not exists library.ad_account (\n"
                 + "id varchar(10) not null primary key,\n"
                 + "password varchar(20) not null)";
-        if (MyDBConnection.executeUpdate(sql1) && MyDBConnection.executeUpdate(sql2))
-            return true;
-        return false;
+        return  (MyDBConnection.executeUpdate(sql1) && MyDBConnection.executeUpdate(sql2));
     }
 
     private boolean buildRecord() {
@@ -69,9 +56,7 @@ public class TableBuilder {
                 + "begin date not null,\n"
                 + "deadline date not null,\n"
                 + "fine int not null)";
-        if (MyDBConnection.executeUpdate(sql))
-            return true;
-        return false;
+        return  (MyDBConnection.executeUpdate(sql));
     }
 
 }

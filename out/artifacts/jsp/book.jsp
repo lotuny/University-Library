@@ -1,5 +1,4 @@
 <%@ page import="javacode.*" %>
-<%@ page import="javacode.Utils" %>
 <%@ page import="java.sql.Date" %>
 <%@ page import="java.util.Calendar" %>
 <%@ page contentType="text/html; charset=utf-8" %>
@@ -118,8 +117,22 @@
     function tryBorrow()
     {
         <%
-            Calendar calendar = Calendar.getInstance();
-            String test = new Date(calendar.getTime().getTime()).toString();
+            if (readerID == null) {
+                %>alert("You need to log in first!");<%
+            } else {
+                Calendar calendar = Calendar.getInstance();
+                int flag = Utils.borrowBook(bookID,readerID,new Date(calendar.getTime().getTime()));
+                switch (flag) {
+                    case 0:
+                        %>alert("Succeed!");<%
+                        break;
+                    case 1:
+                        %>alert("The book was lent!");<%
+                        break;
+                    case 2:
+                        %>alert("You have run out of your permitted number!");<%
+                }
+            }
         %>
     }
 </script>
