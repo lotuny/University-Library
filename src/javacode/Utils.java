@@ -118,15 +118,18 @@ public class Utils {
                 calendar.setTime(deadline);
                 calendar.add(Calendar.DATE, 30);
 
-                sql = "update record set deadline = " + "'" + new Date(calendar.getTime().getTime()) + "'" + " where bookID = '" + bookID + "'";
+                sql = "update library.record set deadline = '" + new Date(calendar.getTime().getTime()) + "'" + " where bookID = '" + bookID + "'";
+                MyDBConnection.executeUpdate(sql);
+
+                sql = "update library.book set state = 'renewed'  where bookID = '" + bookID + "'";
                 MyDBConnection.executeUpdate(sql);
             }
             isDone = true;
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            return isDone;
         }
+
+        return isDone;
     }
     //reader returns a book
     public static boolean returnBook(String bookID){

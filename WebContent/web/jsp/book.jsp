@@ -72,15 +72,19 @@
                     %>
                     <%
                         if (reader != null) {%>
-                        <form class="navbar-form navbar-right log-out" style="margin-right: 50px;" action="logout.jsp">
-                            <label><%=readerID%></label>
+                        <form class="navbar-form navbar-right log-out" style="margin-right: 50px; visibility: visible;" action="jsp/logout.jsp">
                             <button type="submit" class="btn btn-default btn-sm">
                                 <span class="glyphicon glyphicon-log-out"></span> Log out
                             </button>
                         </form>
+
+                        <form class="navbar-form navbar-right" style="margin-right: 50px; visibility: visible;" action="jsp/personal_info.jsp">
+                            <button type="submit" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-user"></span> Personal Center
+                            </button>
+                        </form>
                         <%}
                     %>
-
 				</div>
 			</nav>
 

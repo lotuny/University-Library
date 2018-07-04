@@ -15,13 +15,30 @@
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
-<body>
+<body onload="countdown()">
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
 
-<%
-    session.removeAttribute("userID");
-    session.invalidate();
-    response.sendRedirect("/");
-%>
+                <div class="jumbotron" style="margin-top: 80px; text-align: center;">
+                    <h1>
+                        Back in 2 seconds...
+                    </h1>
+                </div>
 
+            </div>
+        </div>
+    </div>
 </body>
 </html>
+
+<script>
+    function countdown() {
+        <%
+            session.removeAttribute("userID");
+            session.invalidate();
+            response.setHeader("refresh","2;URL=../index.jsp") ;
+        %>
+    }
+
+</script>

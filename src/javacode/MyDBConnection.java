@@ -9,8 +9,8 @@ public class MyDBConnection {
 
     public static void init(){
        try{
-        Class.forName("com.mysql.jdbc.Driver");
-        myConnection=DriverManager.getConnection(
+            Class.forName("com.mysql.jdbc.Driver");
+            myConnection=DriverManager.getConnection(
                 "jdbc:mysql://localhost","root", "123456"
                 );
         }
@@ -62,11 +62,11 @@ public class MyDBConnection {
             if( getMyConnection() == null)
                 MyDBConnection.init();
             myConnection.createStatement().executeUpdate(sql);
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
-        return true;
+        return false;
     }
 
     public static ResultSet executeQuery(String sql) {
@@ -76,7 +76,7 @@ public class MyDBConnection {
             return getMyConnection().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE).executeQuery(sql);
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
         }
+        return null;
     }
 }

@@ -96,6 +96,7 @@
                                     <th>Lent time</th>
                                     <th>Deadline</th>
                                     <th>Fine</th>
+                                    <th>Renew</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -108,6 +109,7 @@
                                     <td><%=records.get(i).getBegin()%></td>
                                     <td><%=records.get(i).getDeadline()%></td>
                                     <td><%=records.get(i).getFine()%></td>
+                                    <td><<a href="tryRenew.jsp?bookID=<%=records.get(i).getBookID()%>"></a>><button style="align-content: center;">Renew</button></td>
                                 </tr>
                                 <%}
                                 %>
