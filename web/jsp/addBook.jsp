@@ -2,12 +2,14 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <%
-    String bookID = request.getParameter("bookID");
-    String title = request.getParameter("title");
-    String author = request.getParameter("author");
-    String ISBN = request.getParameter("ISBN");
+    String bookID = (String) request.getParameter("bookID");
+    String coverPath = (String) request.getParameter("coverPath");
+    String title = (String) request.getParameter("title");
+    String author = (String) request.getParameter("author");
+    String ISBN = (String) request.getParameter("ISBN");
+    String description = (String) request.getParameter("description");
 
-    String prompt;
+    String prompt = "Failed!";
 %>
 
 <html>
@@ -16,14 +18,15 @@
 </head>
 <body>
 <%
-    if (bookID.equals("") || title.equals("") || author.equals("") || ISBN.equals("")) {
+    if (bookID.equals("") || title.equals("") || author.equals("") || ISBN.equals("") || description.equals("")) {
         prompt = "Please fill up all fields!";
-    } else {
-        //Utils.addBook(bookID,title,author,ISBN);
+    } else if (coverPath.equals("") && Utils.addBook(bookID,null,title,author,ISBN,description)) {
+        prompt = "Succeed!";
+    } else if (Utils.addBook(bookID,coverPath,title,author,ISBN,description)){
         prompt = "Succeed!";
     }
 
-    request.setAttribute("addReaderPrompt", prompt);
+    request.setAttribute("addBookPrompt", prompt);
     request.getRequestDispatcher("manage.jsp").forward(request, response);
 %>
 </body>

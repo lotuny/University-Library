@@ -6,9 +6,11 @@
 
 <%
     String bookID = "";
+    String coverPath = "";
     String title = "";
     String author = "";
     String ISBN = "";
+    String description = "";
 
     String readerID = "";
     String name = "";
@@ -112,8 +114,8 @@
 							</tbody>
 						</table>
 
-                        <div class="col-md-12 column">
-                            <a id="modal-599523" href="#modal-container-599523" role="button" class="btn" data-toggle="modal"><button>Add Reader</button></a>
+                        <div class="col-md-5 column">
+                            <a id="modal-599523" href="#modal-container-599523" role="button" class="btn" data-toggle="modal"><button>Add Book</button></a>
 
                             <div class="modal fade" id="modal-container-599523" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" >
@@ -124,37 +126,37 @@
                                                 Please input information for reader:
                                             </h4>
                                         </div>
-                                        <form action="addBook.jsp" method="post">
-                                            <div>
-                                                <div class="form-group">
-                                                    <label for="inputBookID" style="margin-top: 5px;" class="col-sm-3 col-sm-offset-2 control-label">Book ID</label>
-                                                    <div class="col-sm-5">
-                                                        <input type="text" name="bookID" value="<%=bookID%>" class="form-control" id="inputBookID"/>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group col-sm-15">
-                                                    <label for="inputTitle" class="col-sm-3 col-sm-offset-2 control-label">Title</label>
-                                                    <div class="col-sm-5">
-                                                        <input type="text" name="title" value="<%=title%>" class="form-control" id="inputTitle"/>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group col-sm-15">
-                                                    <label for="inputAuthor" class="col-sm-3 col-sm-offset-2 control-label">Author</label>
-                                                    <div class="col-sm-5">
-                                                        <input type="text" name="author" value="<%=author%>" class="form-control" id="inputAuthor"/>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group col-sm-15">
-                                                    <label for="inputISBN" class="col-sm-3 col-sm-offset-2 control-label">ISBN</label>
-                                                    <div class="col-sm-5">
-                                                        <input type="text" name="ISBN" value="<%=ISBN%>" class="form-control" id="inputISBN"/>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer form-group col-sm-15">
-                                                    <button type="submit" class="col-sm-2 col-sm-offset-5" style="height: 50px; margin-top: 20px; font-size: 0.5cm;">Save</button>
-                                                </div>
+                                        <div class="modal-body" style="height: 550px;">
+                                        <form role="form" action="addBook.jsp" method="post">
+                                            <div class="form-group col-md-8 col-md-offset-2">
+                                                <label for="InputBookID">Book ID</label>
+                                                <input type="text" name="bookID" value="<%=bookID%>" class="form-control" id="InputBookID" />
+                                            </div>
+                                            <div class="form-group col-md-8 col-md-offset-2">
+                                                <label for="InputTitle">Title</label>
+                                                <input type="text" name="title" value="<%=title%>" class="form-control" id="InputTitle" />
+                                            </div>
+                                            <div class="form-group col-md-8 col-md-offset-2">
+                                                <label for="InputAuthor">Author</label>
+                                                <input type="text" name="author" value="<%=author%>" class="form-control" id="InputAuthor" />
+                                            </div>
+                                            <div class="form-group col-md-8 col-md-offset-2">
+                                                <label for="InputISBN">ISBN</label>
+                                                <input type="text" name="ISBN" value="<%=ISBN%>" class="form-control" id="InputISBN" />
+                                            </div>
+                                            <div class="form-group col-md-8 col-md-offset-2">
+                                                <label for="Inputdes">Description</label>
+                                                <input type="text" name="description" value="<%=description%>" class="form-control" id="Inputdes" />
+                                            </div>
+                                            <div class="form-group col-md-8 col-md-offset-2">
+                                                <label for="InputCover">Select a cover or remain blank</label>
+                                                <input type="file" accept="image/png, image/jpeg, image/gif, image/jpg" name="coverPath" value="<%=coverPath%>" id="InputCover" />
+                                            </div>
+                                            <div class="form-group col-sm-8 col-sm-offset-3">
+                                                <button type="submit" style="margin-top: 10px; height: 50px; width: 250px;">Submit</button>
                                             </div>
                                         </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

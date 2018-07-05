@@ -158,14 +158,19 @@ public class Utils {
 		    if (MyDBConnection.getMyConnection() == null)
 		        MyDBConnection.init();
 
-            String sql = "insert into library.book (bookID,cover,title,author,state,ISBN) values(?,?,?,?,?,?,?)";
+            String sql = "insert into library.book (bookID,cover,title,author,state,ISBN,description) values(?,?,?,?,?,?,?)";
             PreparedStatement prest = MyDBConnection.getMyConnection().prepareStatement(sql);
 
             prest.setString(1, bookID);
 
-            File file = new File(coverPath);
-            FileInputStream fis = new FileInputStream(file);
-            prest.setBinaryStream(2, fis, file.length());
+            System.out.println("coverPath: " + coverPath);
+            if (coverPath != null) {
+                File file = new File(coverPath);
+                FileInputStream fis = new FileInputStream(file);
+                prest.setBinaryStream(2, fis, file.length());
+            } else {
+                prest.setBinaryStream(2, null);
+            }
 
             prest.setString(3, title);
             prest.setString(4, author);
