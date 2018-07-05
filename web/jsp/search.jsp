@@ -87,15 +87,15 @@
             <div class="row clearfix" style="margin-top: 80px;">
                 <form>
                     <%
-                        String coverPath = "../resources/default.png";
                         List<Book> books = BookDAO.getBooksByTitle(book_name);
                         for (int i = 0; i < books.size(); i++) {
+                            String coverPath = "../resources/books/default.png";
                             if (books.get(i).getCoverPath() != null) {
-                                MyDBConnection.init();
                                 coverPath = basePath + "resources/books/" + books.get(i).getTitle() + ".jpg";
                             }%>
                         <div class="col-md-3 column">
                             <a href="book.jsp?bookID=<%=books.get(i).getBookID()%>"><img style="margin-top: 50px; width: 260px; height: 325px;" src="<%=coverPath%>"/></a>
+                            <h3 style="text-align: center;"><%=books.get(i).getTitle()%></h3>
                         </div>
                         <%}
                     %>

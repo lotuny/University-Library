@@ -11,9 +11,8 @@
     String bookID = (String)request.getParameter("bookID");
     Book book = BookDAO.getBookByID(bookID);
 
-    String coverPath = "../resources/default.png";
+    String coverPath = "../resources/books/default.png";
     if (book.getCoverPath() != null) {
-        MyDBConnection.init();
         coverPath = basePath + "resources/books/" + book.getTitle() + ".jpg";
     }
 
@@ -100,7 +99,6 @@
 			</h2>
 			<p>
 				Author: <%=book.getAuthor()%>
-                State: <%=book.getState()%>
 			</p>
 			<button type="submit" class="btn btn-default col-sm-2" onclick="tryBorrow()" >Borrow</button>
 		</div>

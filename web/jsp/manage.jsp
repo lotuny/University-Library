@@ -97,6 +97,7 @@
 									<th>Title</th>
 									<th>Author</th>
 									<th>ISBN</th>
+                                    <th>Operation</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -108,6 +109,11 @@
                                             <td><%=allBooks.get(i).getTitle()%></td>
                                             <td><%=allBooks.get(i).getAuthor()%></td>
                                             <td><%=allBooks.get(i).getISBN()%></td>
+                                            <td>
+                                                <form action="deleteBook.jsp" method="post">
+                                                    <button type="submit" style="align-content: center;" name="bookID" value="<%=allBooks.get(i).getBookID()%>">Delete</button>
+                                                </form>
+                                            </td>
                                         </tr>
                                     <%}
                                 %>

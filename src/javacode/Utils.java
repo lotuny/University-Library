@@ -163,7 +163,6 @@ public class Utils {
 
             prest.setString(1, bookID);
 
-            System.out.println("coverPath: " + coverPath);
             if (coverPath != null) {
                 File file = new File(coverPath);
                 FileInputStream fis = new FileInputStream(file);
@@ -211,7 +210,14 @@ public class Utils {
     //administrator deletes a reader
 	public static boolean deleteReader(String readerID){
 		try {
-			String sql= "delete from library.reader where readerID = '" + readerID + "'";
+		    String sql = "select bookID from library.record where readerID = '" + readerID + "'";
+            ResultSet rs = MyDBConnection.executeQuery(sql);
+
+            if (rs.next()) { //The reader hasn't returned all the books
+                return false;
+            }
+
+            sql = "delete from library.reader where readerID = '" + readerID + "'";
 			MyDBConnection.executeUpdate(sql);
             sql= "delete from library.reader_account where id = '" + readerID + "'";
             MyDBConnection.executeUpdate(sql);
@@ -220,6 +226,16 @@ public class Utils {
 		}
 		return true;
 	}
+
+	public static boolean deleteBook(String bookID) {
+        try {
+            String sql= "delete from library.book where bookID = '" + bookID + "'";
+            MyDBConnection.executeUpdate(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
 
 	public static List<Book> getAllBooks() {
 	    String sql = "select * from library.book";
