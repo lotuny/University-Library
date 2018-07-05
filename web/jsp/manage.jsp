@@ -129,7 +129,7 @@
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                             <h4 class="modal-title">
-                                                Please input information for reader:
+                                                Please input information for book:
                                             </h4>
                                         </div>
                                         <div class="modal-body" style="height: 550px;">
